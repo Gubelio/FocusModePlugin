@@ -3,7 +3,7 @@
 
 
 source focusconfig.properties
-file=testreader.txt
+edit_file=testreader.txt
 
 if [ $allowed_to_operate -eq 1 ]; then
     while [ $allowed_to_operate -eq 1 ]
@@ -15,14 +15,14 @@ if [ $allowed_to_operate -eq 1 ]; then
             for value in "${websites[@]}"                  
             do  
                 stringval="0.0.0.0 $value"
-                line=$(grep -n "$stringval" testreader.txt | cut -d : -f 1)
-                custom_start=$(grep -n "#customblocks" testreader.txt | cut -d : -f 1)
+                line=$(grep -n "$stringval" $edit_file | cut -d : -f 1)
+                custom_start=$(grep -n "#customblocks" $edit_file | cut -d : -f 1)
                 if [ ! -z $line ]; then
-                    sed -i "$line d" testreader.txt
-                    sed -i "$line i 0.0.0.0 $value" testreader.txt
+                    sed -i "$line d" $edit_file
+                    sed -i "$line i 0.0.0.0 $value" $edit_file
                 else
                     newline=$(($custom_start + 1))
-                    sed -i "$newline i 0.0.0.0 $value" testreader.txt
+                    sed -i "$newline i 0.0.0.0 $value" $edit_file
                 fi
 
             done
@@ -33,9 +33,9 @@ if [ $allowed_to_operate -eq 1 ]; then
             for value in "${websites[@]}"                  
             do  
                 stringval="0.0.0.0 $value"
-                line=$(grep -n "$stringval" testreader.txt | cut -d : -f 1)
+                line=$(grep -n "$stringval" $edit_file | cut -d : -f 1)
                 if [ ! -z $line ]; then
-                    sed -i "$line d" testreader.txt
+                    sed -i "$line d" $edit_file
 
                 fi
 
