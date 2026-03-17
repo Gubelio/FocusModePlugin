@@ -4,7 +4,6 @@
 
 source focusconfig.properties
 edit_file=/etc/hosts
-#edit_file=/home/raymond/Documents/testreader.txt
 
 if [ $allowed_to_operate -eq 1 ]; then
     while [ $allowed_to_operate -eq 1 ]
